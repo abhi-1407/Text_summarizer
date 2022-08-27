@@ -1,36 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- CSS only -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <title>Text Summarizer</title>
     <style>
-        div{
+        body {
+            background: rgb(45, 194, 253);
+            background: linear-gradient(0deg, rgba(45, 194, 253, 1) 0%, rgba(0, 0, 0, 1) 100%);
+            
+        }
+
+        body h1{
+            color: white;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        body h3{
+            color: white;
+        }
+
+        body label{
+            color: white;
+        }
+
+        .container {
             display: flex;
+            padding: 4rem;
+            justify-content: space-evenly;
+            width: 100vw !important;
+            margin: 0;
+            max-width: 100vw;
+        }
+
+        .textEnter {
+            width: 40%;
+        }
+
+        .textEnter form {
+            width: 100%;
+        }
+
+        .textSummary {
+            width: 40%;
+        }
+        @media only screen and (max-width:800px) {
+            .container{
+                flex-direction: column;
+            }
+            .textEnter{
+                width: 100%;
+            }
+            .textSummary{
+                width: 100%;
+                margin-top: 2rem;
+            }
+
         }
     </style>
 </head>
-<body>
-<div>
-    <div>
-    <form action="{{url_for('Summarize')}}" method="post">
-        <div class="form-group" style="flex-direction:column">
-            <h3>Enter Your Text Here</h3>
-            <textarea class="form-control" name="data" placeholder="Leave a comment here" id="floatingTextarea2" style="height:300px width:300px"></textarea>
-            <label for="customRange2" class="form-label">Max Length</label>
-            <input name="maxL" type="range" min="30" max="1000"></input>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </div>
-    </form>
-    </div>
 
-    <div style="flex-direction:column">
-    <h3>Summarized Text</h3>
-    <textarea class="form-control" name="result" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px">{{result}}</textarea>
+<body>
+    <h1>Text Summarizer</h1>
+    <div class="container">
+
+        <div class="textEnter">
+            <form action="{{url_for('Summarize')}}" method="post">
+                <div class="form-group">
+                    <h3>Enter Your Text Here</h3>
+                    <textarea class="form-control" name="data" placeholder="Leave a comment here" id="floatingTextarea2"
+                        style="height:500px"></textarea>
+                    <div style="margin-top: 1rem">
+                        <label for="customRange2" class="form-label">Max Length</label>
+                        <input name="maxL" type="range" min="30" max="1000"></input>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="textSummary">
+            <h3>Summarized Text</h3>
+            <textarea class="form-control" name="result" placeholder="Leave a comment here" id="floatingTextarea2"
+                style="height: 500px">{{result}}</textarea>
+        </div>
     </div>
-</div>
 </body>
+
 </html>
