@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+<head>   
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-    <title>Text Summarizer</title>
+    <title>Legal Document Summarizer</title>
     <style>
         body {
             background: rgb(180,106,58);
@@ -50,6 +51,10 @@ background: linear-gradient(135deg, rgba(180,106,58,1) 0%, rgba(195,22,22,1) 21%
         .textSummary {
             width: 40%;
         }
+        .punjabiheader{
+          text-align: center;
+        }
+        }
         @media only screen and (max-width:800px) {
             .container{
                 flex-direction: column;
@@ -62,17 +67,20 @@ background: linear-gradient(135deg, rgba(180,106,58,1) 0%, rgba(195,22,22,1) 21%
                 margin-top: 2rem;
             }
 
+
         }
     </style>
 </head>
 
 <body>
-    <h1>TEXT SUMMARIZER</h1>
+    <h1>ਕਾਨੂੰਨੀ ਦਸਤਾਵੇਜ਼ ਸੰਖੇਪ</h1>
+    <h1>Legal Document Summarizer</h1>
     <div class="container">
 
         <div class="textEnter">
             <form action="{{url_for('Summarize')}}" method="post">
                 <div class="form-group">
+                    <h3></h3>
                     <h3>Enter Your Text Here</h3>
                     <textarea class="form-control" name="data" placeholder="Leave a comment here" id="floatingTextarea2"
                         style="height:500px"></textarea>
@@ -86,7 +94,7 @@ background: linear-gradient(135deg, rgba(180,106,58,1) 0%, rgba(195,22,22,1) 21%
         </div>
 
         <div class="textSummary">
-            <h3>Summarized Text</h3>
+            <h3 class="punjabiheader">ਸਾਰ </h3>
             <textarea class="form-control" name="result" placeholder="Leave a comment here" id="floatingTextarea2"
                 style="height: 500px">{{result}}</textarea>
         </div>

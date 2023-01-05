@@ -1,4 +1,5 @@
 import requests
+from translate import Translator
 from flask import Flask,render_template,url_for
 from flask import request as req
 
@@ -16,8 +17,15 @@ def Summarize():
         headers = {"Authorization": f"Bearer {API_TOKEN}"}
         data=req.form["data"]
 
+ 
         maxL=int(req.form["maxL"])
         minL=maxL//4
+        def my_function(sentence): 
+            say_lang='en'
+            convert_lang='pa-IN'
+            translator=Translator(from_lang =say_lang,to_lang=convert_lang)
+            translation=translator.translate(sentence)
+            return translation
         def query(payload):
             response = requests.post(API_URL, headers=headers, json=payload)
             return response.json()
@@ -26,8 +34,8 @@ def Summarize():
             "inputs":data,
             "parameters":{"min_length":minL,"max_length":maxL},
         })[0]
-        
-        return render_template("index.html",result=output["summary_text"])
+        #result=my_function(output["summary_text"])
+        return render_template("index.html",result=my_function(output["summary_text"]))
     else:
         return render_template("index.html")
 
